@@ -7,10 +7,9 @@ class user(models.Model):
     password=models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
-        if not self.pk:  # This is a new user, email can be set
+        if not self.pk: 
             super().save(*args, **kwargs)
         else:
-            # Prevent updating the email
             original_user = user.objects.get(pk=self.pk)
             self.email = original_user.email
             super().save(*args, **kwargs)
