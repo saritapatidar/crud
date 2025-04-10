@@ -19,9 +19,13 @@ from django.urls import path
 from apps.fb import views
 from django.conf import settings
 from django.conf.urls.static import static
+
 urlpatterns = [
       path('admin/', admin.site.urls),
       path('signup/',views.signup_page,name='signup'),
       path('login/',views.login_page,name='login'),
-      path('logout/',views.logout_user,name='logout/'),
-]
+      path('logout/',views.logout_user,name='logout'),
+      path(' ',views.home_page,name='home'),
+      path('profile/',views.profile_page,name='profile'),
+      path('post/',views.post_page,name='post'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

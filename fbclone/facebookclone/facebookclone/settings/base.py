@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from os import path 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-##obv#n&=(kuxcgy5)qknuic0a00$7d-3c2+m-$0erq+psash5
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL='fb.CustomUser'
 
+LOGIN_URL = 'login'
 
 # Application definition
 
@@ -122,10 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# MEDIA_ROOT=BASE_DIR/'media'
-# MEDIA_URL="/media/"
+MEDIA_ROOT=BASE_DIR/'media'
+MEDIA_URL="/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTHENTICATION_BACKENDS = [ 
+    'django.contrib.auth.backends.ModelBackend', 
+    # 'fb.backends.PhoneUsernameAuthenticationBackend',
+]
